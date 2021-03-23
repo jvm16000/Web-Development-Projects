@@ -1,0 +1,64 @@
+<html>
+    <title>Local Storage</title>
+    <style>
+        input, button{
+            padding: 7px;
+            height: 40px;
+        }
+        fieldset{
+            margin-bottom: 20px;
+        }
+    </style>
+    <body>
+        <h2>Local Storage Javascript</h2>
+        <fieldset>
+            <legend>Insert Data</legend>
+            <input id="inpKey" type="text" placeholder="Enter Key...">
+            <input id="inpValue" type="text" placeholder="Enter Value...">
+            <button id="btnInsert" type="button">Insert Data</button><br/>
+            <input id="deletetxt" type="text" placeholder="Delete Text">
+            <button id="btnDelete" type="button">Delete Value</button>
+
+        </fieldset>
+        <fieldset>
+            <legend>Local Storage</legend>
+            <div id="lsOutput"></div>
+        </fieldset>
+    </body>
+
+    
+    <script type="text/javascript">
+    const inpKey = document.getElementById("inpKey");
+    const inpValue = document.getElementById("inpValue");
+    const btnInsert = document.getElementById("btnInsert");
+    const lsOutput = document.getElementById("lsOutput");
+    const btnDelete = document.getElementById("btnDelete");
+    const deletetxt = document.getElementById("deletetxt")
+    btnInsert.onclick = function() {
+        const key = inpKey.value;
+        const value = inpValue.value;
+        
+        if (key && value){
+            localStorage.setItem(key, value);
+            location.reload();
+        }
+    };
+    btnDelete.onclick = function() {
+        const key = deletetxt.value;
+        if (key) {
+            localStorage.removeItem(key);
+            location.reload();
+        };
+
+    };
+
+    for (let i = 0; i<localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+
+        lsOutput.innerHTML += `${key}: ${value}<br/>`;
+
+    }
+
+    </script>
+</html>
